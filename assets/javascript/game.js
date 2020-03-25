@@ -35,36 +35,58 @@ var characters = [
 
 function makeHTML(click) {
     var newDiv = $('<div>').addClass('card bg-secondary');
-    newDiv.attr('id', characters[click].name);
+    newDiv.attr('id', click);
     newDiv.append("<img src=" + characters[click].image + ">").addClass("card-img");
     var cardBody = $('<div>').addClass("card-body");
     cardBody.append("<h5 class='card-title'>" + characters[click].name + "</h5>");
     cardBody.append("<p class='card-text'>" + characters[click].description + "</p>");
+    //Show Hp value
     newDiv.append(cardBody);
 
     return newDiv;
 }
 
-for(var i = 0; i < characters.length; i++) {
-    var newDiv = $('<div>').addClass('card bg-secondary');
-    newDiv.attr('id', characters[click].name);
-    newDiv.append("<img src=" + characters[click].image + ">").addClass("card-img");
-    var cardBody = $('<div>').addClass("card-body");
-    cardBody.append("<h5 class='card-title'>" + characters[click].name + "</h5>");
-    cardBody.append("<p class='card-text'>" + characters[click].description + "</p>");
-    cardBody.append("button class='btn btn-primary card-button char-button'> Battle as " = characters[i].name + "<button>");
-    newDiv.append(cardBody);
-    console.log("testing")
-
+for(var i=0; i<characters.length; i++) {
+    //Make a col-3 div
+    //call makeHTML(i) and add a class to listen for
+    //append that new col-3 div to game-area
 }
 
-var myChar = makeHTML(0);
+//CSS POINTER
+    //.class:hover {
+        //cursor: pointer;
+    //}
+
+//Look up $(document).on('click, ".class", function() {}) vs normal listener $(.class).on('click, function(){})
+
+//We need a way to listen for when a character is clicked on initally and make them our character and the rest our enemies
+    //assign our character to a var(probably global)
+    //push the rest into an enemy array
+    //add new class to our char and new class to enemies
+    //display all of these changes to the DOM(use makeHTML function to do this)
+
+//We need another listeren for our enemies and make them the defender only if there isn't one currently
+    //check our global boolean haveDefender
+        //assign enemy selected as defender
+        //remove the enemy from our enemy array
+        //empty the enemies area in the dom and recreate it without the new defender
+        // $(this) --grabs the html that was clicked
+        //look up .detach() method for jQuery(optional to the above line) ----IMPORTANT TO MOVING HTML AROUND
+        //append our new defender to dom
+    //else do nothing or alert the user
+
+//We need an attack button listerne that will handle all of our game logic
+    //use have Defender here again
+    //how do we lose
+    //how do we win
+        //no more enemies to fight
 
 //create on click attack
 
 //select fighter
     //return to attack div
-    //remove attack
+    //remove 
+    //We need a way to reset the game
 
 //attack
 
