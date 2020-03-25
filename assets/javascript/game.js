@@ -37,7 +37,7 @@ function makeHTML(click) {
     var newDiv = $('<div>').addClass('card bg-secondary');
     newDiv.attr('id', characters[click].name);
     newDiv.append("<img src=" + characters[click].image + ">").addClass("card-img");
-    car cardBody = $('<div>').addClass("card-body");
+    var cardBody = $('<div>').addClass("card-body");
     cardBody.append("<h5 class='card-title'>" + characters[click].name + "</h5>");
     cardBody.append("<p class='card-text'>" + characters[click].description + "</p>");
     newDiv.append(cardBody);
@@ -49,13 +49,23 @@ for(var i = 0; i < characters.length; i++) {
     var newDiv = $('<div>').addClass('card bg-secondary');
     newDiv.attr('id', characters[click].name);
     newDiv.append("<img src=" + characters[click].image + ">").addClass("card-img");
-    car cardBody = $('<div>').addClass("card-body");
+    var cardBody = $('<div>').addClass("card-body");
     cardBody.append("<h5 class='card-title'>" + characters[click].name + "</h5>");
     cardBody.append("<p class='card-text'>" + characters[click].description + "</p>");
     cardBody.append("button class='btn btn-primary card-button char-button'> Battle as " = characters[i].name + "<button>");
     newDiv.append(cardBody);
-
+    console.log("testing")
 
 }
 
 var myChar = makeHTML(0);
+
+//create on click attack
+
+//select fighter
+    //return to attack div
+    //remove attack
+
+//attack
+
+//select defender
