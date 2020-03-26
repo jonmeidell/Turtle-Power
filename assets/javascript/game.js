@@ -46,16 +46,15 @@ function makeHTML(click) {
     return newDiv;
 }
 
-for(var i=0; i<characters.length; i++) {
+for(var i = 0; i < characters.length; i++) {
     //Make a col-3 div
+    var newDiv = $('<div>').addClass('col-3');
     //call makeHTML(i) and add a class to listen for
+    makeHTML(i)
+    newDiv.addClass(chosenA);
     //append that new col-3 div to game-area
+    newDiv.append('game-area');
 }
-
-//CSS POINTER
-    //.class:hover {
-        //cursor: pointer;
-    //}
 
 //Look up $(document).on('click, ".class", function() {}) vs normal listener $(.class).on('click, function(){})
 

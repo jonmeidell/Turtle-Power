@@ -6,3 +6,8 @@ body {
 a:link {
     color: magenta;
 }
+
+/* CSS POINTER */
+.class:hover {
+    cursor: pointer;
+}
