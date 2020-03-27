@@ -59,9 +59,13 @@ for(var i = 0; i < characters.length; i++) {
 //Look up $(document).on('click, ".class", function() {}) vs normal listener $(.class).on('click, function(){})
 
 //We need a way to listen for when a character is clicked on initally and make them our character and the rest our enemies
+
     //assign our character to a var(probably global)
+document.getElementById("chosenA").addEventListener("click", chosenB);
     //push the rest into an enemy array
+chosenB.push(enemyChoice);
     //add new class to our char and new class to enemies
+$().addClass('');
     //display all of these changes to the DOM(use makeHTML function to do this)
 
 //We need another listeren for our enemies and make them the defender only if there isn't one currently
