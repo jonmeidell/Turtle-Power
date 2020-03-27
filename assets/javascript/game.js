@@ -92,12 +92,13 @@ function gameState() {
         console.log("You lose");
         //show reset button
     }
+    //how do we win
+        //no more enemies to fight
     if (wins >= 3) {
         console.log("You're Winner!");
     }
 }
-    //how do we win
-        //no more enemies to fight
+
 
 //create on click attack
 
