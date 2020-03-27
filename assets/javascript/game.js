@@ -49,11 +49,21 @@ function makeHTML(click) {
 for(var i = 0; i < characters.length; i++) {
     //Make a col-3 div
     var newDiv = $('<div>').addClass('col-3');
+    var header = $('<h5>');
+    var imageNew = $('<img src=' + characters[i].image + '>');
+    var hpNew = $('<div>').addClass('hp');
+    var descriptionNew = $('<div>');
+    var section = $('<section>').addClass(characters[i].name);
+    header.html(characters[i].name);
+    hpNew.html(characters[i].hp);
+    descriptionNew.html(characters[i].description);
+    section.append(header, hpNew, imageNew, descriptionNew);
+
     //call makeHTML(i) and add a class to listen for
-    makeHTML(i)
-    newDiv.addClass(chosenA);
+    makeHTML(i);
+    newDiv.addClass("chosenA");
     //append that new col-3 div to game-area
-    newDiv.append('game-area');
+    $(".game-area").append(section);
 }
 
 //Look up $(document).on('click, ".class", function() {}) vs normal listener $(.class).on('click, function(){})
@@ -104,7 +114,7 @@ function gameState() {
 
 //select fighter
     //return to attack div
-attacker $('<div>');
+// attacker $('<div>');
     //remove
     //We need a way to reset the game
 var resetButton = document.createElement("Return to the sewer");
