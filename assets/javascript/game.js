@@ -79,8 +79,23 @@ $().addClass('');
     //else do nothing or alert the user
 
 //We need an attack button listerne that will handle all of our game logic
+var attackButton = document.createElement("Attack");
     //use have Defender here again
     //how do we lose
+var wins = 0;
+
+function gameState() {
+    if (chosenA.hp > 0) {
+        console.log(hp);
+        wins++;
+    } else if (chosenA.hp <= 0) {
+        console.log("You lose");
+        //show reset button
+    }
+    if (wins >= 3) {
+        console.log("You're Winner!");
+    }
+}
     //how do we win
         //no more enemies to fight
 
@@ -88,8 +103,10 @@ $().addClass('');
 
 //select fighter
     //return to attack div
-    //remove 
+attacker $('<div>');
+    //remove
     //We need a way to reset the game
+var resetButton = document.createElement("Return to the sewer");
 
 //attack
 
