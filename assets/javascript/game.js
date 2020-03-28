@@ -33,6 +33,8 @@ var characters = [
     },
 ];
 
+var playerSelected = false;
+
 function makeHTML(click) {
     var newDiv = $('<div>').addClass('card bg-secondary');
     newDiv.attr('id', click);
@@ -55,7 +57,8 @@ for(var i = 0; i < characters.length; i++) {
     var descriptionNew = $('<div>');
     var apNew = $('<div>').addClass('ap');;
     var capNew = $('<div>').addClass('cap');;
-    var section = $('<section>').addClass(characters[i].name);
+    var section = $('<section>').attr("id", characters[i].name);
+    section.addClass('player-card');
     header.html(characters[i].name);
     hpNew.html("Health: " + characters[i].hp);
     apNew.html("Attack: " + characters[i].ap);
@@ -82,18 +85,18 @@ for(var i = 0; i < characters.length; i++) {
 //$().addClass('');
 
 $('.game-area section').click(function(){
-    if ($(".my-character *").length== 0){
+    if ($(".my-character *").length == 0){
         $(".my-character").append($(this));
        /* var attackButton = $('<button>');
         $(".attack-area").append(attackButton);
         attackButton.html("Attack"); */
     // } else {
         for (i = 0; i < characters.length; i++) {
-            if (characters[i].name != $(this).attr("class")){
+            if (characters[i].name != $(this).attr("id")){
                 var className = characters[i].name;
-                var moveChar = $("."+className);
+                var moveChar = $("#"+ className);
                 console.log(moveChar);
-                $(".my-enemies").append($("." + className));
+                $(".my-enemies").append($("#" + className));
                 console.log(className);
             }
         }
