@@ -53,11 +53,15 @@ for(var i = 0; i < characters.length; i++) {
     var imageNew = $('<img src=' + characters[i].image + '>');
     var hpNew = $('<div>').addClass('hp');
     var descriptionNew = $('<div>');
+    var apNew = $('<div>').addClass('ap');;
+    var capNew = $('<div>').addClass('cap');;
     var section = $('<section>').addClass(characters[i].name);
     header.html(characters[i].name);
-    hpNew.html(characters[i].hp);
+    hpNew.html("Health: " + characters[i].hp);
+    apNew.html("Attack: " + characters[i].ap);
+    capNew.html("Counter-attack: " + characters[i].cap);
     descriptionNew.html(characters[i].description);
-    section.append(header, hpNew, imageNew, descriptionNew);
+    section.append(header, imageNew, hpNew, apNew, capNew, descriptionNew);
 
     //call makeHTML(i) and add a class to listen for
     makeHTML(i);
@@ -80,12 +84,10 @@ for(var i = 0; i < characters.length; i++) {
 $('.game-area section').click(function(){
     if ($(".my-character *").length== 0){
         $(".my-character").append($(this));
-       
-       
        /* var attackButton = $('<button>');
         $(".attack-area").append(attackButton);
-        attackButton.html("Attack"); */ 
-   // } else {
+        attackButton.html("Attack"); */
+    // } else {
         for (i = 0; i < characters.length; i++) {
             if (characters[i].name != $(this).attr("class")){
                 var className = characters[i].name;
@@ -95,9 +97,7 @@ $('.game-area section').click(function(){
                 console.log(className);
             }
         }
-
-     }
-
+    }
 });
 
 $(document).on("click", ".my-enemies section", function(){
@@ -105,7 +105,10 @@ $(document).on("click", ".my-enemies section", function(){
     if ($(".my-defender *").length == 0){
         console.log('test');
         $(".my-defender").append($(this));
-
+        var attackButton = $('<button>');
+        $(".attack-area").append(attackButton);
+        attackButton.html("Attack");
+    } else {
     }
 });
 
