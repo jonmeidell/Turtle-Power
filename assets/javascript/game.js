@@ -138,7 +138,6 @@ $(document).on("click", ".my-enemies section", function(){
     //else do nothing or alert the user
 
 //We need an attack button listerne that will handle all of our game logic
-var attackButton = document.createElement("Attack");
     //use have Defender here again
     //how do we lose
 var wins = 0;
@@ -166,8 +165,9 @@ function gameState() {
 // attacker $('<div>');
     //remove
     //We need a way to reset the game
-var resetButton = document.createElement("Return to the sewer");
-
+var resetButton = $('<button>');
+$(".reset").append(resetButton);
+resetButton.html("Return to the sewer!");
 //attack
 
 //select defender
