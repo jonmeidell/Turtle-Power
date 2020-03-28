@@ -71,11 +71,57 @@ for(var i = 0; i < characters.length; i++) {
 //We need a way to listen for when a character is clicked on initally and make them our character and the rest our enemies
 
     //assign our character to a var(probably global)
-document.getElementById("chosenA").addEventListener("click", chosenB);
+//document.getElementById("chosenA").addEventListener("click", chosenB);
     //push the rest into an enemy array
-chosenB.push(enemyChoice);
-    //add new class to our char and new class to enemies
-$().addClass('');
+//chosenB.push(enemyChoice);
+    //add new class to our char and new class to enemies//
+//$().addClass('');
+
+$('.game-area section').click(function(){
+    if ($(".my-character *").length== 0){
+        $(".my-character").append($(this));
+       
+       
+       /* var attackButton = $('<button>');
+        $(".attack-area").append(attackButton);
+        attackButton.html("Attack"); */ 
+   // } else {
+        for (i = 0; i < characters.length; i++) {
+            if (characters[i].name != $(this).attr("class")){
+                var className = characters[i].name;
+                var moveChar = $("."+className);
+                console.log(moveChar);
+                $(".my-enemies").append($("." + className));
+                console.log(className);
+            }
+        }
+
+     }
+
+});
+
+$(document).on("click", ".my-enemies section", function(){
+    console.log($(this));
+    if ($(".my-defender *").length == 0){
+        console.log('test');
+        $(".my-defender").append($(this));
+
+    }
+});
+
+// once defender is chosen, then write the new attack button
+// rearrange html
+// click event for attack button
+
+
+
+
+
+
+
+
+
+
     //display all of these changes to the DOM(use makeHTML function to do this)
 
 //We need another listeren for our enemies and make them the defender only if there isn't one currently
