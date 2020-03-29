@@ -3,7 +3,7 @@ var characters = [
         name: 'Leonardo',
         image: 'assets/images/leonardo.jpg',
         description: "Well-rounded, strong",
-        hp: 200,
+        hp: 2000,
         ap: 40,
         cap: 45,
     },
@@ -58,11 +58,8 @@ function resetGame() {
     playerSelected = false;
     charactersDefeated = 0;
 
-    //reset all characters health
-
     for (var i = 0; i < characters.length; i++) {
 
-        //Make a col-3 div
         var newDiv = $('<div>').addClass('col-3');
         var header = $('<h5>');
         var imageNew = $('<img src=' + characters[i].image + '>');
@@ -155,9 +152,8 @@ function attack(char, enemy) {
 
     if (charactersDefeated === 3) {
         //add to game-area "You defeated your brothers!"
-        document("You defeated your brothers!");
+        document.write("You defeated your brothers!");
     }
-    // if charactersDefeated === 3, we've won the whole game
 }
 
 var resetButton = $('<button class="button glow-button">');

@@ -21,11 +21,11 @@ a:link {
     background-color: greenyellow;
     opacity: 90%;
     padding: 10px;
-    margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     border-radius: 10px;
     margin: auto;
+    margin-bottom: 10px;
     /*center cards
     center text*/
 } 
@@ -37,12 +37,14 @@ a:link {
 
 .button {
     text-decoration: none;
-    color: orange/*(255, 145, 0, 0.8)*/;
-    background: rgb(0, 162, 255);
+    color: orange;
+    font-weight: bolder;
+    background: rgb(0, 132, 255)/*rgb(0, 162, 255)*/;
     padding: 5px 10px;
     border-radius: 4px;
     font-weight: normal;
     transition: all 0.2s ease-in-out;
+    margin: auto;
 }
 
 .glow-button:hover {
