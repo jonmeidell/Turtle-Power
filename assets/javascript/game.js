@@ -34,6 +34,7 @@ var characters = [
 ];
 
 var playerSelected = false;
+var charactersDefeated = 0;
 
 function makeHTML(click) {
     var newDiv = $('<div>').addClass('card bg-secondary');
@@ -48,53 +49,55 @@ function makeHTML(click) {
     return newDiv;
 }
 
-for(var i = 0; i < characters.length; i++) {
-    //Make a col-3 div
-    var newDiv = $('<div>').addClass('col-3');
-    var header = $('<h5>');
-    var imageNew = $('<img src=' + characters[i].image + '>');
-    var hpNew = $('<div>').addClass('hp');
-    var descriptionNew = $('<div>');
-    var apNew = $('<div>').addClass('ap');;
-    var capNew = $('<div>').addClass('cap');;
-    var section = $('<section>').attr("id", characters[i].name);
-    section.addClass('player-card');
-    header.html(characters[i].name);
-    hpNew.html("Health: " + characters[i].hp);
-    apNew.html("Attack: " + characters[i].ap);
-    capNew.html("Counter-attack: " + characters[i].cap);
-    descriptionNew.html(characters[i].description);
-    section.append(header, imageNew, hpNew, apNew, capNew, descriptionNew);
+function resetGame() {
+    $('.game-area').empty();
+    $('.my-defender').empty();
+    $('.attack-area').empty();
+    $('.my-character').empty();
+    $('.my-enemies').empty();
+    playerSelected = false;
+    charactersDefeated = 0;
 
-    //call makeHTML(i) and add a class to listen for
-    makeHTML(i);
-    newDiv.addClass("chosenA");
-    //append that new col-3 div to game-area
-    $(".game-area").append(section);
+    //reset all characters health
+
+    for (var i = 0; i < characters.length; i++) {
+
+        //Make a col-3 div
+        var newDiv = $('<div>').addClass('col-3');
+        var header = $('<h5>');
+        var imageNew = $('<img src=' + characters[i].image + '>');
+        var hpNew = $('<div>').addClass('hp');
+        var descriptionNew = $('<div>');
+        var apNew = $('<div>').addClass('ap');
+        var capNew = $('<div>').addClass('cap');
+        var section = $('<section>').attr("id", characters[i].name);
+        section.attr('fighter-num', i);
+        section.addClass('fighter-num-' + i);
+        section.addClass('player-card');
+        header.html(characters[i].name);
+        hpNew.html("Health: " + characters[i].hp);
+        apNew.html("Attack: " + characters[i].ap);
+        capNew.html("Counter-attack: " + characters[i].cap);
+        descriptionNew.html(characters[i].description);
+        section.append(header, imageNew, hpNew, apNew, capNew, descriptionNew);
+        //call makeHTML(i) and add a class to listen for
+        makeHTML(i);
+        newDiv.addClass("chosenA");
+        //append that new col-3 div to game-area
+        $(".game-area").append(section);
+    }
 }
 
-//Look up $(document).on('click, ".class", function() {}) vs normal listener $(.class).on('click, function(){})
+resetGame();
 
-//We need a way to listen for when a character is clicked on initally and make them our character and the rest our enemies
-
-    //assign our character to a var(probably global)
-//document.getElementById("chosenA").addEventListener("click", chosenB);
-    //push the rest into an enemy array
-//chosenB.push(enemyChoice);
-    //add new class to our char and new class to enemies//
-//$().addClass('');
-
-$('.game-area section').click(function(){
-    if ($(".my-character *").length == 0){
+$(document).on("click", ".game-area section", function () {
+    if (playerSelected === false) {
         $(".my-character").append($(this));
-       /* var attackButton = $('<button>');
-        $(".attack-area").append(attackButton);
-        attackButton.html("Attack"); */
-    // } else {
+        playerSelected = true;
         for (i = 0; i < characters.length; i++) {
-            if (characters[i].name != $(this).attr("id")){
+            if (characters[i].name != $(this).attr("id")) {
                 var className = characters[i].name;
-                var moveChar = $("#"+ className);
+                var moveChar = $("#" + className);
                 console.log(moveChar);
                 $(".my-enemies").append($("#" + className));
                 console.log(className);
@@ -103,74 +106,62 @@ $('.game-area section').click(function(){
     }
 });
 
-$(document).on("click", ".my-enemies section", function(){
+$(document).on("click", ".my-enemies section", function () {
     console.log($(this));
-    if ($(".my-defender *").length == 0){
+    if ($(".my-defender *").length == 0) {
         console.log('test');
         $(".my-defender").append($(this));
-        var attackButton = $('<button>');
+        var attackButton = $('<button class="button glow-button">');
         $(".attack-area").append(attackButton);
         attackButton.html("Attack");
     } else {
     }
 });
 
-// once defender is chosen, then write the new attack button
-// rearrange html
-// click event for attack button
+$(document).on("click", ".attack-area button", function () {
+    //get our char
+    var chosenChar = $('.my-character section').attr('fighter-num');
+    // get our enemy
+    var enemyChar = $('.my-defender section').attr('fighter-num');
+    attack(characters[chosenChar], characters[enemyChar]);
+});
 
-
-
-
-
-
-
-
-
-
-    //display all of these changes to the DOM(use makeHTML function to do this)
-
-//We need another listeren for our enemies and make them the defender only if there isn't one currently
-    //check our global boolean haveDefender
-        //assign enemy selected as defender
-        //remove the enemy from our enemy array
-        //empty the enemies area in the dom and recreate it without the new defender
-        // $(this) --grabs the html that was clicked
-        //look up .detach() method for jQuery(optional to the above line) ----IMPORTANT TO MOVING HTML AROUND
-        //append our new defender to dom
-    //else do nothing or alert the user
-
-//We need an attack button listerne that will handle all of our game logic
-    //use have Defender here again
-    //how do we lose
-var wins = 0;
-
-function gameState() {
-    if (chosenA.hp > 0) {
-        console.log(hp);
-        wins++;
-    } else if (chosenA.hp <= 0) {
-        console.log("You lose");
-        //show reset button
+function attack(char, enemy) {
+    charHP = $('#' + char.name + ' .hp').html().replace(/[^\d.]/g, '');
+    enemyHP = $('#' + enemy.name + ' .hp').html().replace(/[^\d.]/g, '');
+    if (charHP > 0 && enemyHP > 0) {
+        charHP -= enemy.ap;
+        enemyHP -= char.ap;
+        $('#' + char.name + ' .hp').html("Health: " + charHP);
+        $('#' + enemy.name + ' .hp').html("Health: " + enemyHP);
     }
-    //how do we win
-        //no more enemies to fight
-    if (wins >= 3) {
-        console.log("You're Winner!");
+
+    if (charHP <= 0) {
+        alert("You lose!");
+        resetGame();
     }
+
+    // char is out of hp
+    if (enemyHP <= 0) {
+        charactersDefeated++;
+        $('.my-defender').empty();
+        $('.attack-area').empty();
+    }
+
+    if (charactersDefeated === 3) {
+        //add to game-area "You defeated your brothers!"
+    }
+    // if charactersDefeated === 3, we've won the whole game
+
+    // enemy is out of hp
+
+    //$("#Leonardo .hp")
 }
 
-
-//create on click attack
-
-//select fighter
-    //return to attack div
-// attacker $('<div>');
-    //remove
-    //We need a way to reset the game
 var resetButton = $('<button>');
 $(".reset").append(resetButton);
 resetButton.html("Return to the sewer!");
+document.getElementById(resetButton).onclick = resetGame;
 //attack
 
 //select defender
