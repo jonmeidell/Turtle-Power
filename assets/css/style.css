@@ -3,6 +3,10 @@ body {
     color: magenta;
 }
 
+.reset {
+    margin: auto;
+}
+
 a:link {
     color: magenta;
 }
@@ -21,9 +25,8 @@ a:link {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     border-radius: 10px;
-    
-    /* card shadowing 
-    center cards
+    margin: auto;
+    /*center cards
     center text*/
 } 
 
@@ -34,7 +37,7 @@ a:link {
 
 .button {
     text-decoration: none;
-    color: rgba(167, 119, 57, 0.8);
+    color: orange/*(255, 145, 0, 0.8)*/;
     background: rgb(0, 162, 255);
     padding: 5px 10px;
     border-radius: 4px;

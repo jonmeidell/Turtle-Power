@@ -160,7 +160,7 @@ function attack(char, enemy) {
     // if charactersDefeated === 3, we've won the whole game
 }
 
-var resetButton = $('<button>');
+var resetButton = $('<button class="button glow-button">');
 $(".reset").append(resetButton);
 resetButton.html("Return to the sewer!");
 //$document.getElementById("Return to the sewer!").onclick = function(){
