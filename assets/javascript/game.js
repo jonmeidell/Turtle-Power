@@ -118,7 +118,7 @@ $(document).on("click", ".my-enemies section", function () {
     }
 });
 
-$(document).on("click", ".attack-area button", function () {
+$(document).on("click", ".attack-area button", function() {
     //get our char
     var chosenChar = $('.my-character section').attr('fighter-num');
     // get our enemy
@@ -129,9 +129,14 @@ $(document).on("click", ".attack-area button", function () {
 function attack(char, enemy) {
     charHP = $('#' + char.name + ' .hp').html().replace(/[^\d.]/g, '');
     enemyHP = $('#' + enemy.name + ' .hp').html().replace(/[^\d.]/g, '');
+    charAP = $('#' + char.name + ' .ap').html().replace(/[^\d.]/g, '');
+    charAP += 5;
+    // trying to increase attack power with each attack, doesn't seem to be working
     if (charHP > 0 && enemyHP > 0) {
-        charHP -= enemy.ap;
+        charHP -= enemy.cap;
         enemyHP -= char.ap;
+
+    // trying to increase attack power with each attack, doesn't seem to be working
         $('#' + char.name + ' .hp').html("Health: " + charHP);
         $('#' + enemy.name + ' .hp').html("Health: " + enemyHP);
     }
@@ -150,18 +155,16 @@ function attack(char, enemy) {
 
     if (charactersDefeated === 3) {
         //add to game-area "You defeated your brothers!"
+        document("You defeated your brothers!");
     }
     // if charactersDefeated === 3, we've won the whole game
-
-    // enemy is out of hp
-
-    //$("#Leonardo .hp")
 }
 
 var resetButton = $('<button>');
 $(".reset").append(resetButton);
 resetButton.html("Return to the sewer!");
-document.getElementById(resetButton).onclick = resetGame;
-//attack
-
-//select defender
+//$document.getElementById("Return to the sewer!").onclick = function(){
+//    resetGame();
+$(document).on("click", "Return to the sewer!", function(){
+    resetGame();    
+});
