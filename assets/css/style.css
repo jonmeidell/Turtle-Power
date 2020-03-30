@@ -43,6 +43,7 @@ a:link {
     font-weight: normal;
     transition: all 0.2s ease-in-out;
     margin: auto;
+    opacity: 90%;
 }
 
 .glow-button:hover {

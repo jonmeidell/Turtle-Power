@@ -3,15 +3,15 @@ var characters = [
         name: 'Leonardo',
         image: 'assets/images/leonardo.jpg',
         description: "Well-rounded, strong",
-        hp: 2000,
+        hp: 400,
         ap: 40,
-        cap: 45,
+        cap: 40,
     },
     {
         name: 'Raphael',
         image: 'assets/images/raphael.jpg',
         description: "Very high strength",
-        hp: 180,
+        hp: 380,
         ap: 50,
         cap: 30,
     },
@@ -19,17 +19,17 @@ var characters = [
         name: 'Michaelangelo',
         image: 'assets/images/michelangelo.jpg',
         description: "Well-rounded, can take a hit",
-        hp: 220,
+        hp: 420,
         ap: 35,
-        cap: 40,
+        cap: 35,
     },
     {
         name: 'Donatello',
         image: 'assets/images/donatello.jpg',
         description: "High defense",
-        hp: 260,
+        hp: 460,
         ap: 30,
-        cap: 45,
+        cap: 40,
     },
 ];
 
@@ -54,11 +54,12 @@ function resetGame() {
     $('.attack-area').empty();
     $('.my-character').empty();
     $('.my-enemies').empty();
+    $('#win').empty();
     playerSelected = false;
     charactersDefeated = 0;
 
-    for (var i = 0; i < characters.length; i++) {
 
+    for (var i = 0; i < characters.length; i++) {
         var newDiv = $('<div>').addClass('col-3');
         var header = $('<h5>');
         var imageNew = $('<img src=' + characters[i].image + '>');
@@ -92,19 +93,16 @@ $(document).on("click", ".game-area section", function () {
             if (characters[i].name != $(this).attr("id")) {
                 var className = characters[i].name;
                 var moveChar = $("#" + className);
-                console.log(moveChar);
                 $(".my-enemies").append($("#" + className));
-                console.log(className);
             }
         }
     }
 });
 
 $(document).on("click", ".my-enemies section", function () {
-    console.log($(this));
     if ($(".my-defender *").length == 0) {
         $(".my-defender").append($(this));
-        var attackButton = $('<button class="button glow-button">');
+        var attackButton = $('<button class="button container-fluid glow-button col-md-3">');
         $(".attack-area").append(attackButton);
         attackButton.html("Attack");
     } else {
@@ -112,7 +110,7 @@ $(document).on("click", ".my-enemies section", function () {
 });
 
 $(document).on("click", ".attack-area button", function () {
-    //get our char
+    // get our char
     var chosenChar = $('.my-character section').attr('fighter-num');
     // get our enemy
     var enemyChar = $('.my-defender section').attr('fighter-num');
@@ -120,15 +118,18 @@ $(document).on("click", ".attack-area button", function () {
 });
 
 function attack(char, enemy) {
+
     charHP = $('#' + char.name + ' .hp').html().replace(/[^\d.]/g, '');
     enemyHP = $('#' + enemy.name + ' .hp').html().replace(/[^\d.]/g, '');
     charAP = $('#' + char.name + ' .ap').html().replace(/[^\d.]/g, '');
-    charAP += 5;
+    // charAP was a string
+    charAP = Number(charAP) + 10;
+    // changing string to integer
     $('#' + char.name + ' .ap').html("Attack: " + charAP);
     // trying to increase attack power with each attack, doesn't seem to be working
     if (charHP > 0 && enemyHP > 0) {
         charHP -= enemy.cap;
-        enemyHP -= char.ap;
+        enemyHP -= charAP;
         $('#' + char.name + ' .hp').html("Health: " + charHP);
         $('#' + enemy.name + ' .hp').html("Health: " + enemyHP);
     }
@@ -142,11 +143,9 @@ function attack(char, enemy) {
         charactersDefeated++;
         $('.my-defender').empty();
         $('.attack-area').empty();
-        console.log(charactersDefeated);
     }
 
     if (charactersDefeated === 3) {
-        console.log("You win");
         $("#win").text("You defeated your brothers!")
     }
 }
@@ -154,8 +153,6 @@ function attack(char, enemy) {
 var resetButton = $('<button class="button glow-button">');
 $(".reset").append(resetButton);
 resetButton.html("Return to the sewer!");
-//$document.getElementById("Return to the sewer!").onclick = function(){
-//    resetGame();
-$(document).on("click", "Return to the sewer!", function () {
+$(document).on("click", ".reset button", function () {
     resetGame();
 });
