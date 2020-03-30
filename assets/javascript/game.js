@@ -43,7 +43,6 @@ function makeHTML(click) {
     var cardBody = $('<div>').addClass("card-body");
     cardBody.append("<h5 class='card-title'>" + characters[click].name + "</h5>");
     cardBody.append("<p class='card-text'>" + characters[click].description + "</p>");
-    //Show Hp value
     newDiv.append(cardBody);
 
     return newDiv;
@@ -77,10 +76,8 @@ function resetGame() {
         capNew.html("Counter-attack: " + characters[i].cap);
         descriptionNew.html(characters[i].description);
         section.append(header, imageNew, hpNew, apNew, capNew, descriptionNew);
-        //call makeHTML(i) and add a class to listen for
         makeHTML(i);
         newDiv.addClass("chosenA");
-        //append that new col-3 div to game-area
         $(".game-area").append(section);
     }
 }
@@ -106,7 +103,6 @@ $(document).on("click", ".game-area section", function () {
 $(document).on("click", ".my-enemies section", function () {
     console.log($(this));
     if ($(".my-defender *").length == 0) {
-        console.log('test');
         $(".my-defender").append($(this));
         var attackButton = $('<button class="button glow-button">');
         $(".attack-area").append(attackButton);
@@ -115,7 +111,7 @@ $(document).on("click", ".my-enemies section", function () {
     }
 });
 
-$(document).on("click", ".attack-area button", function() {
+$(document).on("click", ".attack-area button", function () {
     //get our char
     var chosenChar = $('.my-character section').attr('fighter-num');
     // get our enemy
@@ -128,12 +124,11 @@ function attack(char, enemy) {
     enemyHP = $('#' + enemy.name + ' .hp').html().replace(/[^\d.]/g, '');
     charAP = $('#' + char.name + ' .ap').html().replace(/[^\d.]/g, '');
     charAP += 5;
+    $('#' + char.name + ' .ap').html("Attack: " + charAP);
     // trying to increase attack power with each attack, doesn't seem to be working
     if (charHP > 0 && enemyHP > 0) {
         charHP -= enemy.cap;
         enemyHP -= char.ap;
-
-    // trying to increase attack power with each attack, doesn't seem to be working
         $('#' + char.name + ' .hp').html("Health: " + charHP);
         $('#' + enemy.name + ' .hp').html("Health: " + enemyHP);
     }
@@ -143,16 +138,16 @@ function attack(char, enemy) {
         resetGame();
     }
 
-    // char is out of hp
     if (enemyHP <= 0) {
         charactersDefeated++;
         $('.my-defender').empty();
         $('.attack-area').empty();
+        console.log(charactersDefeated);
     }
 
     if (charactersDefeated === 3) {
-        //add to game-area "You defeated your brothers!"
-        document.write("You defeated your brothers!");
+        console.log("You win");
+        $("#win").text("You defeated your brothers!")
     }
 }
 
@@ -161,6 +156,6 @@ $(".reset").append(resetButton);
 resetButton.html("Return to the sewer!");
 //$document.getElementById("Return to the sewer!").onclick = function(){
 //    resetGame();
-$(document).on("click", "Return to the sewer!", function(){
-    resetGame();    
+$(document).on("click", "Return to the sewer!", function () {
+    resetGame();
 });

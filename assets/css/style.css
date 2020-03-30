@@ -26,20 +26,18 @@ a:link {
     border-radius: 10px;
     margin: auto;
     margin-bottom: 10px;
-    /*center cards
-    center text*/
 } 
 
 .player-card > img{
     height: 200px;
 
 }
-
+/* both button and glow-button needed for glow effect */
 .button {
     text-decoration: none;
     color: orange;
     font-weight: bolder;
-    background: rgb(0, 132, 255)/*rgb(0, 162, 255)*/;
+    background: rgb(0, 168, 60);
     padding: 5px 10px;
     border-radius: 4px;
     font-weight: normal;
@@ -48,6 +46,17 @@ a:link {
 }
 
 .glow-button:hover {
-    color: rgb(212, 44, 44);
-    box-shadow: 0 5px 15px rgba(255, 115, 0, 0.76);
+    color: red;
+    box-shadow: 0 5px 15px orangered;
+}
+
+#win {
+    color: fuchsia;
+    background-color: greenyellow;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    opacity: 90%;
+    margin-bottom: 10px;
 }
