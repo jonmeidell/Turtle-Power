@@ -5,3 +5,4 @@ A strategy game where you choose your own character, from the 4 turtles we have 
 Fixes to be made:
       Tweak the looks a little bit to have a better arrangement of cards, etc.
       Add/take away 'prompts' for character selection and desciption lines on character cards
+      Change lose/win prompts to text lines of text
