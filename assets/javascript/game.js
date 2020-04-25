@@ -94,6 +94,7 @@ $(document).on("click", ".game-area section", function () {
                 var className = characters[i].name;
                 var moveChar = $("#" + className);
                 $(".my-enemies").append($("#" + className));
+                $('.my-character section').addClass('my-turtle');
             }
         }
     }
@@ -102,6 +103,7 @@ $(document).on("click", ".game-area section", function () {
 $(document).on("click", ".my-enemies section", function () {
     if ($(".my-defender *").length == 0) {
         $(".my-defender").append($(this));
+        $('.my-defender section').addClass('my-enemy');
         var attackButton = $('<button class="button container-fluid glow-button col-md-3">');
         $(".attack-area").append(attackButton);
         attackButton.html("Attack");
@@ -114,11 +116,12 @@ $(document).on("click", ".attack-area button", function () {
     var chosenChar = $('.my-character section').attr('fighter-num');
     // get our enemy
     var enemyChar = $('.my-defender section').attr('fighter-num');
+        //move to select char area   
+
     attack(characters[chosenChar], characters[enemyChar]);
 });
 
 function attack(char, enemy) {
-
     charHP = $('#' + char.name + ' .hp').html().replace(/[^\d.]/g, '');
     enemyHP = $('#' + enemy.name + ' .hp').html().replace(/[^\d.]/g, '');
     charAP = $('#' + char.name + ' .ap').html().replace(/[^\d.]/g, '');

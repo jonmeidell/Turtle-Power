@@ -51,6 +51,14 @@ a:link {
     box-shadow: 0 5px 15px orangered;
 }
 
+.my-turtle {
+    box-shadow: 0 0 5px 5px cyan;
+}
+
+.my-enemy {
+    box-shadow: 0 0 5px 5px orangered;
+}
+
 #win {
     color: fuchsia;
     background-color: greenyellow;
