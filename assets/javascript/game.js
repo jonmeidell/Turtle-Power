@@ -64,7 +64,7 @@ function resetGame() {
         var header = $('<h5>');
         var imageNew = $('<img src=' + characters[i].image + '>');
         var hpNew = $('<div>').addClass('hp');
-        var descriptionNew = $('<div>');
+        var descriptionNew = $('<div>').addClass('trait');
         var apNew = $('<div>').addClass('ap');
         var capNew = $('<div>').addClass('cap');
         var section = $('<section>').attr("id", characters[i].name);
@@ -78,7 +78,6 @@ function resetGame() {
         descriptionNew.html(characters[i].description);
         section.append(header, imageNew, hpNew, apNew, capNew, descriptionNew);
         makeHTML(i);
-        newDiv.addClass("chosenA");
         $(".game-area").append(section);
     }
 }
@@ -90,6 +89,10 @@ $(document).on("click", ".game-area section", function () {
         $(".my-character").append($(this));
         playerSelected = true;
         for (i = 0; i < characters.length; i++) {
+            $('.chooseChar').hide();
+            // remove/hide chooseChar class div
+            // remove/hide counter-attack and desciption
+            // add in choose your sparring partner
             if (characters[i].name != $(this).attr("id")) {
                 var className = characters[i].name;
                 var moveChar = $("#" + className);
@@ -102,6 +105,11 @@ $(document).on("click", ".game-area section", function () {
 
 $(document).on("click", ".my-enemies section", function () {
     if ($(".my-defender *").length == 0) {
+        // remove/hide attack and desciption (only from enemies and not player)
+        $('.ap').hide();
+        $('.trait').hide();
+        // hides non-selected enemies
+        $('.my-enemies').hide();
         $(".my-defender").append($(this));
         $('.my-defender section').addClass('my-enemy');
         var attackButton = $('<button class="button container-fluid glow-button col-md-3">');
@@ -116,8 +124,6 @@ $(document).on("click", ".attack-area button", function () {
     var chosenChar = $('.my-character section').attr('fighter-num');
     // get our enemy
     var enemyChar = $('.my-defender section').attr('fighter-num');
-        //move to select char area   
-
     attack(characters[chosenChar], characters[enemyChar]);
 });
 
@@ -129,7 +135,6 @@ function attack(char, enemy) {
     charAP = Number(charAP) + 10;
     // changing string to integer
     $('#' + char.name + ' .ap').html("Attack: " + charAP);
-    // trying to increase attack power with each attack, doesn't seem to be working
     if (charHP > 0 && enemyHP > 0) {
         charHP -= enemy.cap;
         enemyHP -= charAP;
@@ -138,14 +143,16 @@ function attack(char, enemy) {
     }
 
     if (charHP <= 0) {
-        alert("You lose!");
-        resetGame();
+        $("#win").text("You lost the sparring match!")
+        $('.attack-area').empty();
     }
 
     if (enemyHP <= 0) {
         charactersDefeated++;
         $('.my-defender').empty();
         $('.attack-area').empty();
+        // brings enemies back
+        $('.my-enemies').show();
     }
 
     if (charactersDefeated === 3) {
