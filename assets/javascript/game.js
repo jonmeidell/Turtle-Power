@@ -55,9 +55,10 @@ function resetGame() {
     $('.my-character').empty();
     $('.my-enemies').empty();
     $('#win').empty();
+    $('.chooseEnemy').hide();
     playerSelected = false;
     charactersDefeated = 0;
-
+    
 
     for (var i = 0; i < characters.length; i++) {
         var newDiv = $('<div>').addClass('col-3');
@@ -90,8 +91,9 @@ $(document).on("click", ".game-area section", function () {
         playerSelected = true;
         for (i = 0; i < characters.length; i++) {
             $('.chooseChar').hide();
-            // remove/hide chooseChar class div
-            // remove/hide counter-attack and desciption
+            // remove/hide counter-attack and desciption only from your player
+            // $('.cap').hide();
+            // $('.trait').hide();
             // add in choose your sparring partner
             if (characters[i].name != $(this).attr("id")) {
                 var className = characters[i].name;
@@ -105,6 +107,7 @@ $(document).on("click", ".game-area section", function () {
 
 $(document).on("click", ".my-enemies section", function () {
     if ($(".my-defender *").length == 0) {
+        $('.chooseEnemy').show();
         // remove/hide attack and desciption (only from enemies and not player)
         $('.ap').hide();
         $('.trait').hide();
@@ -145,6 +148,9 @@ function attack(char, enemy) {
     if (charHP <= 0) {
         $("#win").text("You lost the sparring match!")
         $('.attack-area').empty();
+        $('.hp').hide();
+        $('.ap').hide();
+        $('.cap').hide();
     }
 
     if (enemyHP <= 0) {
@@ -157,6 +163,9 @@ function attack(char, enemy) {
 
     if (charactersDefeated === 3) {
         $("#win").text("You defeated your brothers!")
+        $('.hp').hide();
+        $('.ap').hide();
+        $('.cap').hide();
     }
 }
 
