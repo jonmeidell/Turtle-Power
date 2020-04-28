@@ -92,9 +92,10 @@ $(document).on("click", ".game-area section", function () {
         for (i = 0; i < characters.length; i++) {
             $('.chooseChar').hide();
             // remove/hide counter-attack and desciption only from your player
-            // $('.cap').hide();
-            // $('.trait').hide();
+            $('.my-character .cap').hide();
+            $('.my-character .trait').hide();
             // add in choose your sparring partner
+            $('.chooseEnemy').show();
             if (characters[i].name != $(this).attr("id")) {
                 var className = characters[i].name;
                 var moveChar = $("#" + className);
@@ -107,10 +108,10 @@ $(document).on("click", ".game-area section", function () {
 
 $(document).on("click", ".my-enemies section", function () {
     if ($(".my-defender *").length == 0) {
-        $('.chooseEnemy').show();
+        $('.chooseEnemy').hide();
         // remove/hide attack and desciption (only from enemies and not player)
-        $('.ap').hide();
-        $('.trait').hide();
+        $('.my-defender .ap').hide();
+        $('.my-defender .trait').hide();
         // hides non-selected enemies
         $('.my-enemies').hide();
         $(".my-defender").append($(this));

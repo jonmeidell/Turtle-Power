@@ -1,9 +1,15 @@
 body {
     background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-position-x: center;
     color: magenta;
 }
 
 .reset {
+    margin: auto;
+}
+
+.row {
     margin: auto;
 }
 
@@ -14,6 +20,42 @@ a:link {
 /* CSS POINTER */
 .class:hover {
     cursor: pointer;
+}
+
+.power {
+    background-color: greenyellow;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 3px;
+    opacity: 90%;
+    margin-bottom: 10px;
+}
+
+.chooseChar {
+    background-color: purple;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    text-align: center;
+    padding-bottom: 3px;
+    margin: auto;
+    opacity: 90%;
+    margin-bottom: 10px;
+}
+
+.chooseEnemy {
+    background-color: orange;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    text-align: center;
+    padding-bottom: 3px;
+    margin: auto;
+    opacity: 90%;
+    margin-bottom: 10px;
 }
 
 .player-card {
@@ -41,14 +83,15 @@ a:link {
     padding: 5px 10px;
     border-radius: 4px;
     font-weight: normal;
-    transition: all 0.2s ease-in-out;
+    /* first part of glow effect */
+    transition: all 0.4s ease-in-out;
     margin: auto;
     opacity: 90%;
 }
 
 .glow-button:hover {
-    color: red;
-    box-shadow: 0 5px 15px orangered;
+    color: coral;
+    box-shadow: 0 0 10px 5px orangered;
 }
 
 .my-turtle {
