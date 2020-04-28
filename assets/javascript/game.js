@@ -58,7 +58,7 @@ function resetGame() {
     $('.chooseEnemy').hide();
     playerSelected = false;
     charactersDefeated = 0;
-    
+
 
     for (var i = 0; i < characters.length; i++) {
         var newDiv = $('<div>').addClass('col-3');
@@ -91,10 +91,8 @@ $(document).on("click", ".game-area section", function () {
         playerSelected = true;
         for (i = 0; i < characters.length; i++) {
             $('.chooseChar').hide();
-            // remove/hide counter-attack and desciption only from your player
             $('.my-character .cap').hide();
             $('.my-character .trait').hide();
-            // add in choose your sparring partner
             $('.chooseEnemy').show();
             if (characters[i].name != $(this).attr("id")) {
                 var className = characters[i].name;
@@ -109,17 +107,17 @@ $(document).on("click", ".game-area section", function () {
 $(document).on("click", ".my-enemies section", function () {
     if ($(".my-defender *").length == 0) {
         $('.chooseEnemy').hide();
-        // remove/hide attack and desciption (only from enemies and not player)
-        $('.my-defender .ap').hide();
-        $('.my-defender .trait').hide();
         // hides non-selected enemies
         $('.my-enemies').hide();
         $(".my-defender").append($(this));
         $('.my-defender section').addClass('my-enemy');
+        $('.my-defender .ap').hide();
+        $('.my-defender .trait').hide();
         var attackButton = $('<button class="button container-fluid glow-button col-md-3">');
         $(".attack-area").append(attackButton);
         attackButton.html("Attack");
     } else {
+
     }
 });
 
