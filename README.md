@@ -2,7 +2,5 @@
 
 A strategy game where you choose your own character, from the 4 turtles we have grown-up with and love, and battle against the rest of your borthers, one-by-one, until there is only one left standing.  Your power increases during your spars with your brother.
 
-Fixes to be made:
+Fix to be made:
       Tweak the looks a little bit to have a better arrangement of cards, etc.
-      Add/take away 'prompts' for character selection and desciption lines on character cards
-      Change lose/win prompts to text lines of text
