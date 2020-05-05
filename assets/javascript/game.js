@@ -68,6 +68,7 @@ function resetGame() {
         var descriptionNew = $('<div>').addClass('trait');
         var apNew = $('<div>').addClass('ap');
         var capNew = $('<div>').addClass('cap');
+        var column = $('<div>').addClass('col-md-2');
         var section = $('<section>').attr("id", characters[i].name);
         section.attr('fighter-num', i);
         section.addClass('fighter-num-' + i);
@@ -77,9 +78,11 @@ function resetGame() {
         apNew.html("Attack: " + characters[i].ap);
         capNew.html("Counter-attack: " + characters[i].cap);
         descriptionNew.html(characters[i].description);
+       
         section.append(header, imageNew, hpNew, apNew, capNew, descriptionNew);
+        column.append(section);
         makeHTML(i);
-        $(".game-area").append(section);
+        $(".game-area").append(column);
     }
 }
 
