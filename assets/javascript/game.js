@@ -18,7 +18,7 @@ var characters = [
     {
         name: 'Michaelangelo',
         image: 'assets/images/michelangelo.jpg',
-        description: "Well-rounded, can take a hit",
+        description: "Well-rounded, defensive",
         hp: 420,
         ap: 35,
         cap: 35,
@@ -68,7 +68,6 @@ function resetGame() {
         var descriptionNew = $('<div>').addClass('trait');
         var apNew = $('<div>').addClass('ap');
         var capNew = $('<div>').addClass('cap');
-        var column = $('<div>').addClass('col-md-2');
         var section = $('<section>').attr("id", characters[i].name);
         section.attr('fighter-num', i);
         section.addClass('fighter-num-' + i);
@@ -78,11 +77,9 @@ function resetGame() {
         apNew.html("Attack: " + characters[i].ap);
         capNew.html("Counter-attack: " + characters[i].cap);
         descriptionNew.html(characters[i].description);
-       
         section.append(header, imageNew, hpNew, apNew, capNew, descriptionNew);
-        column.append(section);
         makeHTML(i);
-        $(".game-area").append(column);
+        $(".game-area").append(section);
     }
 }
 
