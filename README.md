@@ -1,5 +1,5 @@
 # Turtle Power! RPG game.
-![Welcome!](https://jonmeidell.github.io/Turtle-Power/assets/images/background.jpg)
+![Welcome!](https://jonmeidell.github.io/assets/images/tmnt.gif)
 
 This is a strategy game where you choose your own character, from the 4 turtles we have grown-up with and love, and battle against the rest of your brothers, one-by-one, until there is only one left standing.
 
